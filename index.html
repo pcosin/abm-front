@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <title>Inicio de sesión</title>
+  </head>
+  <body>
+    <main class="main-login">
+      <div class="login-box">
+        <div class="logo">
+          <img src="./assets/img/logo.jpeg" alt="Logo" />
+        </div>
+        <h2 class="title-login">Iniciar Sesión</h2>
+        <form>
+          <div class="form-group-inicio">
+            <input type="email" class="form-control" placeholder="Email" name="email" required />
+          </div>
+          <div class="form-group-inicio input-password">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Contraseña"
+              name="password"
+              required
+              pattern=".{8,}"
+              id="password-field"
+            />
+            <span
+              toggle="#password-field"
+              class="fa fa-fw fa-eye field-icon toggle-password"
+            ></span>
+          </div>
+          <div class="form-group-inicio">
+            <select name="obra" id="obra" class="form-control" required>
+              <option value="montelectro">Montelectro</option>
+              <option value="otro">otro</option>
+            </select>
+          </div>
+          <!-- <div class="form-group form-check d-flex justify-content-center">
+            <input type="checkbox" class="form-check-input" />
+            <label class="form-check-label">Recordarme</label>
+          </div> -->
+          <p id="error-message" style="display: none; color: red">
+            El usuario y la contraseña no coinciden
+          </p>
+          <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+
+        <p class="text-muted">MONTELECTRO S.A 2023</p>
+      </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/aa037f8851.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

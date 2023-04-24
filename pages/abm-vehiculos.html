@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>ABM - Vehículos</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="container-fluid bg-primary p-3">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="./cpanel.html">
+            <img src="../assets/img/logo-apaisado.jpeg" alt="Logo" height="40" />
+          </a>
+          <nav class="nav d-flex">
+            <a class="nav-link text-light mr-5" href="./abm.html">Personal</a>
+            <a class="nav-link text-light mr-5" href="./abm-vehiculos.html">Vehículos</a>
+            <a class="nav-link text-light mr-5" href="./reportes.html">Reportes</a>
+            <a class="nav-link text-light mr-5" href="./horarios.html">Horarios</a>
+            <a class="nav-link text-light mr-5" href="./findUsers.html">Buscar Personal</a>
+            <a class="nav-link text-light mr-5" href="./findVehicles.html">Buscar Vehículos</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <h2 class="text-center my-5 fs-1 mb-5">ABM - Vehículos</h2>
+        <div class="position-relative" style="height: 30px;"> 
+          <button class="btn btn-outline-danger d-none position-absolute top-0 end-0" id="btnEdit">Dejar de editar</button>
+         </div>
+        <form id="formVehicles">
+          <div class="form-group">
+            <label for="patente">Patente</label>
+            <input
+              type="text"
+              class="form-control"
+              id="patente"
+              name="patente"
+              placeholder="Ej. ABC 123"
+            />
+          </div>
+          <div class="form-group">
+            <label for="marca">Marca</label>
+            <input
+              type="text"
+              class="form-control"
+              id="marca"
+              name="marca"
+              placeholder="Ej. Chevrolet"
+            />
+          </div>
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="modelo"
+              name="modelo"
+              placeholder="Ej. Corsa"
+            />
+          </div>
+          <div class="form-group">
+            <label for="vtoSeguro">VTO Seguro</label>
+            <input type="date" class="form-control" id="vtoSeguro" name="vtoSeguro" />
+          </div>
+          <div class="form-group">
+            <label for="vtoVtvKms">VTV / Kms</label>
+            <input type="text" class="form-control" id="vtoVtvKms" name="vtoVtvKms" />
+          </div>
+
+          <div class="form-group">
+            <label for="ultimoService">Último service</label>
+            <input type="date" class="form-control" id="ultimoService" name="ultimoService" />
+          </div>
+          <div class="form-group">
+            <label for="vtoPoliza">FECHA VENCIMIENTO DEL SEGURO</label>
+            <input type="date" class="form-control" id="vtoPoliza" name="vtoPoliza" />
+          </div>
+          <div class="form-group">
+            <label for="permisoManejo">PERMISO DE MANEJO</label>
+            <input type="text" class="form-control" id="permisoManejo" name="permisoManejo" />
+          </div>
+          <div class="form-group">
+            <label for="constInscripcion">CONSTANCIA DE INSCRIPCIÓN</label>
+            <input type="text" class="form-control" id="constInscripcion" name="constInscripcion" />
+          </div>
+
+          <div class="form-group">
+            <label for="personalCargo">PERSONAL A CARGO</label>
+            <select class="form-control" id="personalCargo" name="personalCargo">
+              <option>selecciones el personal a cargo</option>
+         
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cedulaAzul">CEDULA AZUL</label>
+            <input type="file" class="form-control-file" id="cedulaAzul" name="cedulaAzul" />
+          </div>
+          <div class="form-group">
+            <label for="polizaSeguro">PÓLIZA DE SEGURO</label>
+            <input type="file" class="form-control-file" id="polizaSeguro" name="polizaSeguro" />
+          </div>
+          <div class="form-group">
+            <label for="adjuntos">VEHÍCULOS (SE PUEDEN ADJUNTAR ARCHIVOS)</label>
+            <input type="file" class="form-control-file" id="adjuntos" name="adjuntos" />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </main>
+    <script type="module" src="../assets/js/abm-vehiculos.js"></script>
+  </body>
+</html>

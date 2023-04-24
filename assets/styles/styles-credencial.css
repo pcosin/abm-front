@@ -1,0 +1,33 @@
+.card-credencial {
+  width: 10cm;
+  height: 5cm;
+}
+
+.img-logo-credencial {
+  max-width: 100px;
+}
+
+.credencial-padding {
+  padding: 0.5rem;
+}
+
+.foto-credencial {
+  width: 200px;
+  height: 135px;
+  object-fit: cover;
+}
+
+.div-code {
+  margin-top: -10px;
+}
+
+.img-barras-credencial {
+  width: 190px;
+  margin: 0 auto;
+}
+
+.card-body-credencial {
+  display: flex;
+  flex: 1 1 auto;
+  padding: 0.5rem;
+}

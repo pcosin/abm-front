@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend ABM",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel assets/utils -d dist"
+  },
+  "author": "@desarrollosmonigote",
+  "license": "ISC",
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "sweetalert2": "^11.7.3"
+  }
+}

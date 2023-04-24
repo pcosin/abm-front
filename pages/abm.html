@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
+ 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="stylesheet" href="../assets/styles/styles-credencial.css">
+
+    <script  src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <title>ABM - Personal</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="container-fluid bg-primary p-3">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="./cpanel.html">
+            <img src="../assets/img/logo-apaisado.jpeg" alt="Logo" height="40" />
+          </a>
+          <nav class="nav d-flex">
+            <a class="nav-link text-light mr-5" href="./abm.html">Personal</a>
+            <a class="nav-link text-light mr-5" href="./abm-vehiculos.html">Vehículos</a>
+            <a class="nav-link text-light mr-5" href="./reportes.html">Reportes</a>
+            <a class="nav-link text-light mr-5" href="./horarios.html">Horarios</a>
+            <a class="nav-link text-light mr-5" href="./findUsers.html">Buscar Personal</a>
+            <a class="nav-link text-light mr-5" href="./findVehicles.html">Buscar Vehículos</a>
+            <a class="nav-link text-light mr-5" href="./credenciales.html">Credenciales</a>
+            <form class="d-flex">
+            <button class="btn btn-cerrar-sesion btn-outline-danger" data-logout type="submit">Cerrar sesión</button>
+            </form>
+          </nav>
+          
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <h2 class="text-center my-5 fs-1 mb-5">ABM - Personal</h2>
+        <div class="position-relative"> 
+         <button class="btn btn-outline-danger d-none position-absolute top-0 end-0" id="btnEdit">Dejar de editar</button>
+        </div>
+        <!-- Tabs Navigation -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="perfil-tab"
+              data-toggle="tab"
+              href="#perfil"
+              role="tab"
+              aria-controls="perfil"
+              aria-selected="true"
+              >Perfil</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="estudios-tab"
+              data-toggle="tab"
+              href="#estudios"
+              role="tab"
+              aria-controls="estudios"
+              aria-selected="false"
+              >Estudios</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="banco-tab"
+              data-toggle="tab"
+              href="#banco"
+              role="tab"
+              aria-controls="banco"
+              aria-selected="false"
+              >Banco</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="epp-tab"
+              data-toggle="tab"
+              href="#epp"
+              role="tab"
+              aria-controls="epp"
+              aria-selected="false"
+              >EPP</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="vehiculo-tab"
+              data-toggle="tab"
+              href="#vehiculo"
+              role="tab"
+              aria-controls="vehiculo"
+              aria-selected="false"
+              >Vehículo</a
+            >
+          </li>
+         
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="credencial-tab"
+              data-toggle="tab"
+              href="#credencial"
+              role="tab"
+              aria-controls="credencial"
+              aria-selected="false"
+              >Credencial</a
+            >
+          </li>
+        </ul>
+        <!-- Tabs Content -->
+        <div class="tab-content">
+          <!-- Tab Perfil -->
+          <div id="perfil" class="tab-pane active">
+            <h2 class="title-form-group">Información personal</h2>
+
+            <form id="formPerfil">
+              <section class="d-flex gap-3 justify-content-between">
+                <div>
+                  <div class="form-group is-inavlid">
+                    <label for="identificacion">Identificación</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="identificacion"
+                      name="identificacion"
+                      placeholder="Ingrese su DNI"
+                      data-obrero-identificacion
+                      data-validacion
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="tipoDni">Tipo de DNI</label>
+                    <select class="form-control" id="tipoDNI" name="tipoDNI">
+                      <option selected value="dni">DNI</option>
+                      <option value="lc">LC</option>
+                      <option value="le">LE</option>
+                      <option value="dniExtranjero">DNI Extranjero</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cuil">CUIL/CUIT</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cuil"
+                      name="cuil"
+                      placeholder="Ingrese su CUIL/CUIT"
+                    />
+                  </div>
+                  <div class="form-group is-inavlid">
+                    <label for="apellido">Apellido</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido"
+                      name="apellido"
+                      placeholder="Ingrese su apellido"
+                      data-obrero-apellido
+                      data-validacion
+
+                    />
+                  </div>
+                  <div class="form-group is-inavlid">
+                    <label for="nombre">Nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      name="nombre"
+                      placeholder="Ingrese su nombre"
+                      data-obrero-nombre
+                      data-validacion
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="telefono">TELÉFONO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="Ingrese su número de teléfono sin 0 ni 15"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fechaNacimiento">FECHA NACIMIENTO</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="fechaNacimiento"
+                      name="fechaNacimiento"
+                      placeholder="Ingrese su fecha de nacimiento"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="nacionalidad">NACIONALIDAD</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nacionalidad"
+                      name="nacionalidad"
+                      maxlength="20"
+                      placeholder="Ingrese su nacionalidad"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="grupoSanguineo">GRUPO / FACTOR SANGUÍNEO</label>
+                    <select class="form-control" id="grupoSanguineo" name="grupoSanguineo">
+                      <option>RH 0 negativo</option>
+                      <option>RH 0 positivo</option>
+                      <option>A negativo</option>
+                      <option>A positivo</option>
+                      <option>B negativo</option>
+                      <option>B positivo</option>
+                      <option>AB negativo</option>
+                      <option>AB positivo</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="estadoCivil">ESTADO CIVIL</label>
+                    <select class="form-control" id="estadoCivil" name="estadoCivil">
+                      <option>CASADO</option>
+                      <option>CONCUBINATO</option>
+                      <option>VIUDO</option>
+                      <option>SOLTERO</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="nombreConyuge"
+                      >NOMBRE DEL CÓNYUGE (en caso de estar casado o en concubinato)</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombreConyuge"
+                      name="nombreConyuge"
+                      placeholder="Ingrese el nombre de su cónyuge"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label>HIJOS</label>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="hijos"
+                        id="hijosSi"
+                        value="Si"
+                      />
+                      <label class="form-check-label" for="hijosSi">SI</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="hijos"
+                        id="hijosNo"
+                        value="No"
+                      />
+                      <label class="form-check-label" for="hijosNo">NO</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="calle">Domicilio: calle</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="calle"
+                      name="calle"
+                      maxlength="22"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="manzana">manzana</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="manzana"
+                      name="manzana"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="parcela">parcela</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="parcela"
+                      name="parcela"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="entre">Entre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="entre"
+                      name="entre"
+                      maxlength="22"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="calle1">Calle 1</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="calle1"
+                      name="calle1"
+                      maxlength="22"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="calle2">Calle 2</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="calle2"
+                      name="calle2"
+                      maxlength="22"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="numero"
+                      name="numero"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="piso">Piso</label>
+                    <input type="number" class="form-control" id="piso" name="piso" maxlength="2" />
+                  </div>
+                  <div class="form-group">
+                    <label for="depto">Depto</label>
+                    <input type="text" class="form-control" id="depto" name="depto" maxlength="2" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="localidad">Localidad</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="localidad"
+                      name="localidad"
+                      placeholder="Ingrese la localidad"
+                      maxlength="22"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cp">CP</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cp"
+                      name="cp"
+                      placeholder="Ingrese el CP"
+                      maxlength="5"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="provincia"
+                      name="provincia"
+                      placeholder="Ingrese la provincia"
+                      maxlength="25"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="personalDe">Personal de</label>
+                    <select class="form-control" id="personalDe" name="personalDe">
+                      <option value="Montelectro" selected>Montelectro</option>
+                      <option value="CTNOA">CTNOA</option>
+                      <option value="Municipio">Municipio</option>
+                      <option value="Otros">Otros</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="otrosContainer" style="display: none">
+                    <label for="otros">Si Otros, especifique</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="otros"
+                      name="otros"
+                      placeholder="Ingrese la empresa"
+                      maxlength="20"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="tipoContrato">Tipo de contrato</label>
+                    <select
+                      class="form-control"
+                      id="tipoContrato"
+                      name="tipoContrato"
+                      data-tipo-contrato
+                    >
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="Efectivo">Efectivo</option>
+                      <option value="Contratado">Contratado</option>
+                      <option value="Monotributista">Monotributista</option>
+                    </select>
+                    <div id="requerimiento" style="display: none; color: red;">Debe seleccionar un requerimiento</div>
+                  </div>
+
+                  <div id="efectivo" style="display: none">
+                    <h5>Requerimientos para Efectivo:</h5>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="altaTempranaAfip"
+                          id="altaTempranaAfipEfectivo"
+                          name="altaTempranaAfipEfectivo"
+                        />
+                        <label class="form-check-label" for="altaTempranaAfipEfectivo"
+                          >Alta temprana de la AFIP (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="figurarNominaArt"
+                          id="figurarNominaArtEfectivo"
+                          name="figurarNominaArtEfectivo"
+                        />
+                        <label class="form-check-label" for="figurarNominaArtEfectivo"
+                          >Figurar en nómina de ART (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="figurarNominaSeguroVida"
+                          id="figurarNominaSeguroVidaEfectivo"
+                          name="figurarNominaSeguroVidaEfectivo"
+                        />
+                        <label class="form-check-label" for="figurarNominaSeguroVidaEfectivo"
+                          >Figurar en nómina de seguro de vida</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="poseerPlanillaEPP"
+                          id="poseerPlanillaEPPEfectivo"
+                          name="poseerPlanillaEPPEfectivo"
+                        />
+                        <label class="form-check-label" for="poseerPlanillaEPPEfectivo"
+                          >Poseer planilla de entrega de EPP (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="poseerConstanciaCapacitacionInduccionSeguridad"
+                          id="poseerConstanciaCapacitacionInduccionSeguridadEfectivo"
+                          name="poseerConstanciaCapacitacionInduccionSeguridadEfectivo"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="poseerConstanciaCapacitacionInduccionSeguridadEfectivo"
+                          >Poseer constancia de capacitación de inducción de seguridad</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="contratado" style="display: none">
+                    <h5>Requerimientos para Contratado:</h5>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="altaTempranaAfip"
+                          id="altaTempranaAfipContratado"
+                          name="altaTempranaAfipContratado"
+                        />
+                        <label class="form-check-label" for="altaTempranaAfipContratado"
+                          >Alta temprana de la AFIP (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="figurarNominaArt"
+                          id="figurarNominaArtContratado"
+                          name="figurarNominaArtContratado"
+                        />
+                        <label class="form-check-label" for="figurarNominaArtContratado"
+                          >Figurar en nómina de ART (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="figurarNominaSeguroVida"
+                          id="figurarNominaSeguroVidaContratado"
+                          name="figurarNominaSeguroVidaContratado"
+                        />
+                        <label class="form-check-label" for="figurarNominaSeguroVidaContratado"
+                          >Figurar en nómina de seguro de vida</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="poseerPlanillaEPP"
+                          id="poseerPlanillaEPPContratado"
+                          name="poseerPlanillaEPPContratado"
+                        />
+                        <label class="form-check-label" for="poseerPlanillaEPPContratado"
+                          >Poseer planilla de entrega de EPP (Adjunto)</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="poseerConstanciaCapacitacionInduccionSeguridad"
+                          id="poseerConstanciaCapacitacionInduccionSeguridadContratado"
+                          name="poseerConstanciaCapacitacionInduccionSeguridadContratado"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="poseerConstanciaCapacitacionInduccionSeguridadContratado"
+                          >Poseer constancia de capacitación de inducción de seguridad</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div id="monotributista" style="display: none">
+                    <h5>Requerimientos para Monotributista:</h5>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="constanciaMonotributo"
+                          id="constanciaMonotributo"
+                          name="constanciaMonotributo"
+                        />
+                        <label class="form-check-label" for="constanciaMonotributo"
+                          >Constancia de Monotributo</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="seguroDeAccidentesPersonales"
+                          id="seguroAccidentesPersonales"
+                          name="seguroAccidentesPersonales"
+                        />
+                        <label class="form-check-label" for="seguroAccidentesPersonales"
+                          >Seguro de Accidentes Personales</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="EPP" id="EPP" />
+                        <label class="form-check-label" for="EPP">EPP</label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="induccionDeSeguridad"
+                          id="induccionDeSeguridad"
+                          name="induccionDeSeguridad"
+                        />
+                        <label class="form-check-label" for="induccionDeSeguridad"
+                          >Inducción de Seguridad</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="clausulaDeNoRepeticion"
+                          id="clausulaDeNoRepeticion"
+                          name="clausulaDeNoRepeticion"
+                        />
+                        <label class="form-check-label" for="clausulaDeNoRepeticion"
+                          >Clausula de no reptición</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="puestoCargo">PUESTO / CARGO</label>
+                    <select class="form-control" id="puestoCargo" name="puestoCargo">
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="Coordinador">COORDINADOR</option>
+                      <option value="Jefe-de-obra">JEFE DE OBRA</option>
+                      <option value="Ingeniero-Civil">INGENIERO CIVIL</option>
+                      <option value="Administracion-de-obra">ADMINISTRACIÓN DE OBRA</option>
+                      <option value="Tecnico-en-seguridad-e-higiene">
+                        TÉCNICO EN SEGURIDAD E HIGIENE
+                      </option>
+                      <option value="Topografo">TOPOGRAFO</option>
+                      <option value="Capataz">CAPATAZ</option>
+                      <option value="Oficial">OFICIAL</option>
+                      <option value="MedioOficial">MEDIO OFICIAL</option>
+                      <option value="Ayudante">AYUDANTE</option>
+                      <option value="Panolero">PAÑOLERO</option>
+                      <option value="Limpieza-y-mantenimiento">LIMPIEZA Y MANTENIMIENTO</option>
+                      <option value="Seguridad">SEGURIDAD</option>
+                      <option value="Chofer-de-camiones">CHOFER DE CAMIONES</option>
+                      <option value="Chofer-de-maquinaria-pesada">CHOFER DE MAQUINARIA PESADA</option>
+                      <option value="Inspector">INSPECTOR</option>
+                      <option value="Otro">OTRO</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="sector">SECTOR</label>
+                    <select class="form-control" id="sector" name="sector">
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="Administracion">ADMINISTRACIÓN</option>
+                      <option value="Edificio-1">EDIFICIO 1</option>
+                      <option value="Edificio-2">EDIFICIO 2</option>
+                      <option value="Edificio-3">EDIFICIO 3</option>
+                      <option value="Panol">PAÑOL</option>
+                      <option value="Mantenimiento">MANTENIMIENTO</option>
+                      <option value="Inspeccion">INSPECCIÓN</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cuadrilla">CUADRILLA</label>
+                    <select class="form-control" id="cuadrilla" name="cuadrilla">
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <!-- agregar los nombres de capataces de la obra -->
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="colorDeCasco">Color de casco</label>
+                    <select class="form-control" id="colorDeCasco" name="colorDeCasco">
+                      <option value="Blanco">BLANCO</option>
+                      <option value="Azul">AZUL</option>
+                      <option value="Amarillo" selected>AMARILLO</option>
+                      <option value="Rojo">ROJO</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="habilitadoIngreso">Habilitado para ingreso</label>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="habilitadoIngreso"
+                        id="habilitadoIngresoSi"
+                        value="SI"
+                        checked
+                      />
+                      <label class="form-check-label" for="habilitadoIngresoSi">SI</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="habilitadoIngreso"
+                        id="habilitadoIngresoNo"
+                        value="NO"
+                      />
+                      <label class="form-check-label" for="habilitadoIngresoNo">NO</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="vehiculoCargo">Vehículo a cargo</label>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="vehiculoCargo"
+                        id="vehiculoCargoSi"
+                        value="SI"
+                      />
+                      <label class="form-check-label" for="vehiculoCargoSi">SI</label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="vehiculoCargo"
+                        id="vehiculoCargoNo"
+                        value="NO"
+                        checked
+                      />
+                      <label class="form-check-label" for="vehiculoCargoNo">NO</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="anotaciones">Anotaciones / Observaciones</label>
+                    <textarea
+                      class="form-control"
+                      id="anotaciones"
+                      name="anotaciones"
+                      rows="3"
+                      maxlength="250"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="img-upload">
+                    <label>Imagen de personal</label>
+                    <div class="img-upload-inner">
+                      <div id="imgPreviewContainer">
+                        <img id="imgPreview" src="#" alt="Your image" width="400" height="500" />
+                      </div>
+                      <div class="img-upload-btn" id="imgUploadBtn">
+                        <span>Subir imagen</span>
+                        <input
+                          type="file"
+                          class="form-control-file"
+                          id="imgInput"
+                          accept="image/*"
+                          name="profileImage"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <button type="submit" class="btn btn-primary btn-submit-personal">Siguiente</button>
+            </form>
+          </div>
+
+          <!-- Estudios -->
+          <div id="estudios" class="tab-pane">
+            <h2 class="title-form-group">Estudios</h2>
+            <form method="post" id="formEstudios">
+              <div class="form-group">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="primario"
+                    name="primario"
+                    value="primario"
+                  />
+                  <label class="form-check-label" for="primario">PRIMARIO</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="secundario"
+                    name="secundario"
+                    value="secundario"
+                  />
+                  <label class="form-check-label" for="secundario">SECUNDARIO</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="terciario"
+                    name="terciarioUniviersitario"
+                    value="terciario Univiersitario"
+                  />
+                  <label class="form-check-label" for="terciarioUniviersitario"
+                    >TERCIARIO / UNIVERSITARIO</label
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  id="otrosConocimientos"
+                  name="otrosConocimientos"
+                  rows="3"
+                  maxlength="300"
+                ></textarea>
+                <label for="otrosConocimientos">OTROS CONOCIMIENTOS</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Siguiente</button>
+            </form>
+          </div>
+
+          <!-- Tab Banco -->
+          <div id="banco" class="tab-pane">
+            <h2 class="title-form-group">Información bancaria</h2>
+            <form id="formBanco">
+              <div class="form-group">
+                <label for="bankName">Nombre del Banco</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bankName"
+                  name="nombreBanco"
+                  maxlength="25"
+                />
+              </div>
+              <div class="form-group">
+                <label for="branch">Sucursal</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="branch"
+                  name="sucursal"
+                  maxlength="30"
+                />
+              </div>
+              <div class="form-group">
+                <label for="accountNumber">Número de Cuenta</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="accountNumber"
+                  name="numeroCuenta"
+                  placeholder="ej: 1234-123456/1"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cbuNumber">CBU</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cbuNumber"
+                  name="numeroCbu"
+                  maxlength="22"
+                />
+              </div>
+              <div class="form-group">
+                <label for="fileUpload">Adjuntar Archivos</label>
+                <input type="file" class="form-control-file" id="fileUpload" name="fileUpload" />
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+
+          <!-- EPP -->
+          <div id="epp" class="tab-pane">
+            <h2 class="title-form-group">EPP</h2>
+            <form id="formEPP" enctype="multipart/form-data">
+              <div class="card">
+                <div class="card-header">CAMISA</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="camisaTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camisaTalle"
+                      name="camisaTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camisaCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="camisaCantidad"
+                      name="camisaCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camisaTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camisaTipoModelo"
+                      name="camisaTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camisaMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camisaMarca"
+                      name="camisaMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camisaFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="camisaFechaEntrega"
+                      name="camisaFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="camisaCertificacion"
+                      name="camisaCertificacion"
+                    />
+                    <label class="form-check-label" for="camisaCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesCamisa">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesCamisa"
+                      name="observacionesCamisa"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">PANTALÓN</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="pantalonTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pantalonTalle"
+                      name="pantalonTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pantalonCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="pantalonCantidad"
+                      name="pantalonCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pantalonTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pantalonTipoModelo"
+                      name="pantalonTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pantalonMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pantalonMarca"
+                      name="pantalonMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pantalonFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="pantalonFechaEntrega"
+                      name="pantalonFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="pantalonCertificacion"
+                      name="pantalonCertificacion"
+                    />
+                    <label class="form-check-label" for="pantalonCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesPantalon">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesPantalon"
+                      name="observacionesPantalon"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">BOTAS</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="botasTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="botasTalle"
+                      name="botasTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="botasCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="botasCantidad"
+                      name="botasCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="botasTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="botasTipoModelo"
+                      name="botasTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="botasMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="botasMarca"
+                      name="botasMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="botasFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="botasFechaEntrega"
+                      name="botasFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="botasCertificacion"
+                      name="botasCertificacion"
+                    />
+                    <label class="form-check-label" for="botasCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesBotas">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesBotas"
+                      name="observacionesBotas"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">PULLOVER</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="pulloverTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pulloverTalle"
+                      name="pulloverTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pulloverCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="pulloverCantidad"
+                      name="pulloverCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pulloverTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pulloverTipoModelo"
+                      name="pulloverTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pulloverMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pulloverMarca"
+                      name="pulloverMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pulloverFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="pulloverFechaEntrega"
+                      name="pulloverFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="pulloverCertificacion"
+                      name="pulloverCertificacion"
+                    />
+                    <label class="form-check-label" for="pulloverCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesPullover">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesPullover"
+                      name="observacionesPullover"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">CAMPERA</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="camperaTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camperaTalle"
+                      name="camperaTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camperaCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="camperaCantidad"
+                      name="camperaCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camperaTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camperaTipoModelo"
+                      name="camperaTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camperaMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="camperaMarca"
+                      name="camperaMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="camperaFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="camperaFechaEntrega"
+                      name="camperaFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="camperaCertificacion"
+                      name="camperaCertificacion"
+                    />
+                    <label class="form-check-label" for="camperaCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesCampera">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesCampera"
+                      name="observacionesCampera"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">CHALECO REFLACTARIO</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="chalecoTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="chalecoTalle"
+                      name="chalecoTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="chalecoCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="chalecoCantidad"
+                      name="chalecoCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="chalecoTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="chalecoTipoModelo"
+                      name="chalecoTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="chalecoMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="chalecoMarca"
+                      name="chalecoMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="chalecoFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="chalecoFechaEntrega"
+                      name="chalecoFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="chalecoCertificacion"
+                      name="chalecoCertificacion"
+                    />
+                    <label class="form-check-label" for="chalecoCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesChaleco">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesChaleco"
+                      name="observacionesChaleco"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">CASCO</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="cascoTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cascoTalle"
+                      name="cascoTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cascoCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="cascoCantidad"
+                      name="cascoCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cascoTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cascoTipoModelo"
+                      name="cascoTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cascoMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cascoMarca"
+                      name="cascoMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cascoFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="cascoFechaEntrega"
+                      name="cascoFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="cascoCertificacion"
+                      name="cascoCertificacion"
+                    />
+                    <label class="form-check-label" for="cascoCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesCascp">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesCasco"
+                      name="observacionesCasco"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">OTROS ELEMENTOS DE SEGURIDAD REQUERIDOS</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="otrosTalle">TALLE</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="otrosTalle"
+                      name="otrosTalle"
+                      maxlength="2"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="otrosCantidad">CANTIDAD</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="otrosCantidad"
+                      name="otrosCantidad"
+                      min="1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="otrosTipoModelo">TIPO - MODELO</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="otrosTipoModelo"
+                      name="otrosTipoModelo"
+                      maxlength="30"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="otrosMarca">MARCA</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="otrosMarca"
+                      name="otrosMarca"
+                      maxlength="15"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="otrosFechaEntrega">FECHA ENTREGA</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="otrosFechaEntrega"
+                      name="otrosFechaEntrega"
+                    />
+                  </div>
+                  <div class="form-group form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="otrosCertificacion"
+                      name="otrosCertificacion"
+                    />
+                    <label class="form-check-label" for="otrosCertificacion"
+                      >POSEE CERTIFICACIÓN</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="observacionesOtros">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesOtros"
+                      name="observacionesOtros"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">OBSERVACIONES GENERALES</div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="observacionesGenerales">Observaciones:</label>
+                    <textarea
+                      class="form-control"
+                      id="observacionesGenerales"
+                      name="observacionesGenerales"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+
+          <!-- Tab Vehículo -->
+          <div id="vehiculo" class="tab-pane">
+            <form id="formVehiculo">
+              <div class="form-group mt-4">
+                <label for="patente">Patente</label>
+                <select name="patente" id="patente" class="form-control">
+                  <option value="No">No tiene vehiculo a cargo</option>
+                </select>
+              </div>  
+                <!-- TODO eliminar inputs vehiculos -->
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  id="patente"
+                  name="patente"
+                  placeholder="Ej. ABC 123"
+                />
+              </div>
+              <div class="form-group">
+                <label for="marca">Marca</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="marca"
+                  name="marca"
+                  placeholder="Ej. Chevrolet"
+                />
+              </div>
+              <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modelo"
+                  name="modelo"
+                  placeholder="Ej. Corsa"
+                />
+              </div>
+              <div class="form-group">
+                <label for="vtoSeguro">VTO Seguro</label>
+                <input type="date" class="form-control" id="vtoSeguro" name="vtoSeguro" />
+              </div>
+              <div class="form-group">
+                <label for="vtoVtvKms">VTV / Kms</label>
+                <input type="text" class="form-control" id="vtoVtvKms" name="vtoVtvKms" />
+              </div>
+
+              <div class="form-group">
+                <label for="ultimoService">Último service</label>
+                <input type="date" class="form-control" id="ultimoService" name="ultimoService" />
+              </div> -->
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+          </div>
+          <!-- Tab Horarios -->
+         
+          <div id="credencial" class="tab-pane">
+         
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../assets/js/abm-tabs.js"></script>
+  </body>
+</html>

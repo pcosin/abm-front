@@ -1,0 +1,395 @@
+/* ------------------- */
+/* Variables           */
+/* ------------------- */
+
+:root {
+  --color-blue: #007bff;
+  --color-white: #ffffff;
+  --color-grey: #cccccc;
+  --color-green: #00cc00;
+  --color-red: #cc0000;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Reset margins */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+body {
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+img,
+picture {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+a,
+a:focus,
+a:hover,
+a:active {
+  text-decoration: none !important;
+  color: inherit;
+  outline: none;
+  background-color: transparent;
+}
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+textarea {
+  overflow: auto;
+}
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Box de inicio de sesión */
+
+.logo {
+  margin-bottom: 2rem;
+}
+
+.login-box {
+  width: 25rem;
+  margin: 7% auto;
+  text-align: center;
+  border: 2px solid var(--color-grey);
+  padding: 3.5rem;
+}
+
+.title-login {
+  font-size: 1.5rem;
+  margin-block: 1rem;
+}
+.form-group-inicio {
+  margin-bottom: 2rem;
+}
+
+.form-check-input {
+  margin-inline: 0.5rem;
+  border: 2px solid var(--color-grey);
+}
+.btn-primary {
+  margin-block: 1.5rem;
+}
+
+.input-password {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  margin-right: 0.5rem;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+/* Página cpanel-administracion */
+
+.main-cpanel {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: var(--color-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header img {
+  height: 50px;
+}
+
+.header .header-links {
+  display: flex;
+}
+
+.header .header-links a {
+  margin-right: 1rem;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.header .header-links a:hover {
+  color: var(--color-grey);
+}
+
+.btn-cerrar-sesion {
+  color: var(--color-white);
+}
+
+.form-inline {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.img-abm {
+  max-width: 250px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+/* Página ABM - personal */
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.tab {
+  background-color: var(--color-white);
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.tab.active {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+.forms {
+  margin-top: 3rem;
+}
+
+.form {
+  display: none;
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: 25px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-form-group {
+  margin-block: 1.5rem;
+  text-transform: uppercase;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form.active {
+  display: block;
+}
+
+.img-upload {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  height: 450px;
+  background-color: lightgray;
+  border: 1px solid var(--color-grey);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.img-upload-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.img-upload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+  color: var(--color-grey);
+  cursor: pointer;
+}
+
+.img-upload-btn input[type="file"] {
+  display: none;
+}
+
+#imgPreview {
+  display: none;
+}
+
+/* Validacion de abm personal */
+
+input[data-validacion].is-invalid,
+select[data-tipo-contrato].is-invalid {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+/* Paginas AMB - EPP */
+
+.card {
+  margin-block: 2rem;
+}
+
+/* HORARIOS */
+
+.search-dni-horarios {
+  display: inline;
+  width: 80%;
+}
+
+.search-dni-horarios + button {
+  margin-left: 40px;
+}
+
+table {
+  margin-block: 2rem;
+}
+
+/* FIND USERS AND VEHICLES */
+
+.form-find-users {
+  padding: 1rem;
+}
+
+.form-find-vehiculos {
+  padding: 1rem;
+}
+
+.search-users {
+  display: inline;
+  width: 80%;
+}
+
+.form-find-users > button {
+  margin-left: 40px;
+}
+
+.form-find-vehiculos > button {
+  margin-left: 40px;
+}
+
+.btn-eliminar {
+  margin-block: 1.5rem;
+}
+
+/* REPORTES */
+
+.reportes-search {
+  width: 100%;
+  padding-block: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.reportes-search div {
+  width: 80%;
+}
+
+.reportes-search div label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.table-registro td {
+  vertical-align: middle;
+}
+
+/* POS */
+
+.title-ingreso {
+  background-color: var(--color-green);
+  justify-content: center;
+}
+
+.pos-box {
+  margin: 0 auto;
+  text-align: center;
+  /* border: 2px solid var(--color-grey); */
+  padding: 1rem;
+}
+
+.pos-logo {
+  width: 40%;
+  margin: 0 auto;
+}
